@@ -1,30 +1,42 @@
-import react, { Component } from 'react';
+import react, { Component } from "react";
 
-import './Main.css'
+//Form
+import { FaPlus } from "react-icons/fa";
+
+import "./Main.css";
 
 export default class Main extends Component {
   state = {
-    novaTarefa: '',
-  }
+    novaTarefa: "",
+    tarefas: ["Fazer café", "Estudar", "Beber água"],
+  };
 
-  inputMudou = (e) => {
+  handleChange = (e) => {
     this.setState({
       novaTarefa: e.target.value,
-    })
-  }
+    });
+  };
 
-  render () {
-    const{ novaTarefa } = this.state
+  render() {
+    const { novaTarefa, tarefas } = this.state;
 
     return (
       <div className="main">
         <h1>Lista de tarefas</h1>
 
-        <form action="#">
-          <input onChange={this.handleChange} type="text" />
-          <button type='submit'>Enviar</button>
+        <form action="#" className="form">
+          <input onChange={this.handleChange} type="text" value={novaTarefa} />
+          <button type="submit">
+            <FaPlus />
+          </button>
         </form>
+
+        <ul className="tarefas">
+          {tarefas.map((tarefa) => (
+            <li>{tarefa}</li>
+          ))}
+        </ul>
       </div>
-    )
+    );
   }
 }
